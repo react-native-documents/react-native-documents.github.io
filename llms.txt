@@ -1,0 +1,24 @@
+# React Native document picker & viewer
+
+> Modules for picking and previewing documents in React Native applications
+
+This file contains links to documentation sections following the llmstxt.org standard.
+
+## Table of Contents
+
+- [document-picker API](https://react-native-documents.github.io/docs/doc-picker-api): > **BookmarkingResponse** = \{ `bookmark`: `string`; `bookmarkStatus`: `"success"`; \} \| \{ `bookmarkError`: `string`; `bookmarkStatus`: `"error"`...
+- [document-viewer API](https://react-native-documents.github.io/docs/doc-viewer-api): > **BaseOptions** = \{ `androidApplicationId?`: `string`; `grantPermissions?`: `"read"` \| `"write"`; `headerTitle?`: `string`; `mimeType?`: `strin...
+- [Installation](https://react-native-documents.github.io/docs/install): Depending on what module you need, install one or both of the packages:
+- [Error handling](https://react-native-documents.github.io/docs/sponsor-only/errors): This page describes the case when calling any of the modules' method rejects. Keep in mind other errors can also happen in `pick` ([see `error` and...
+- [Introduction](https://react-native-documents.github.io/docs/sponsor-only/intro): Welcome to the docs for `@react-native-documents/picker` and `@react-native-documents/viewer` packages. These packages provide a way to pick, save ...
+- [Jest module mocks](https://react-native-documents.github.io/docs/sponsor-only/jest-mocks): You will need to mock the functionality of the native modules once you require them from your test files - otherwise you'll get [this error](https:...
+- [Migrating from the old document-picker](https://react-native-documents.github.io/docs/sponsor-only/migration): The new package has a new name (`@react-native-documents/picker`), so you need to update your import statements.
+- [Directory picker](https://react-native-documents.github.io/docs/sponsor-only/picker/directory-picker): This module allows you to pick a directory from the file system. The chosen directory can then be used for file I/O operations.
+- [Import mode](https://react-native-documents.github.io/docs/sponsor-only/picker/import-mode): Import mode allows you to pick a file from the user's device and keep your own copy of it
+- [Android usage notes](https://react-native-documents.github.io/docs/sponsor-only/picker/integrating-on-android): :::tip
+- [Keeping a local copy of the picked files {#keepLocalCopy}](https://react-native-documents.github.io/docs/sponsor-only/picker/keeping-local-copy): [`keepLocalCopy`](/docs/doc-picker-api#keeplocalcopy) makes the file available in the app's storage. The behavior is different on iOS and Android:
+- [Limiting selectable file types](https://react-native-documents.github.io/docs/sponsor-only/picker/limiting-selectable-files): Limit selectable file types in the document picker
+- [Open mode](https://react-native-documents.github.io/docs/sponsor-only/picker/open-mode): Open mode allows you to access the selected documents directly.
+- ['Save As' dialog](https://react-native-documents.github.io/docs/sponsor-only/picker/save-as-dialog): [`saveDocuments`](/docs/doc-picker-api#savedocuments) presents the user with a dialog to save the provided file(s) to a location of their choice.
+- [Virtual files](https://react-native-documents.github.io/docs/sponsor-only/picker/virtual-files): Virtual files are an Android-only concept. You have almost surely encountered them in your Google Drive - all the Google Docs, Sheets, Presentation...
+- [Document Viewer](https://react-native-documents.github.io/docs/sponsor-only/viewer): The viewer module is designed to work with the files that the document picker module returns. It supports both `uri` and `bookmark` coming from `op...
