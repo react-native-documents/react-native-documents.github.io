@@ -195,24 +195,22 @@ After importing a file, it's likely that you'll want to work with a local copy o
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 
-<Tabs queryString="current-os" className="unique-tabs">
-  <TabItem value="android" label="Android">
+  
     Import mode uses [`Intent.ACTION_GET_CONTENT`](https://developer.android.com/reference/android/content/Intent#ACTION_GET_CONTENT) internally.
 
     Read more about the difference between the two modes in [Android integration guide](./integrating-on-android.mdx).
 
     With `ACTION_GET_CONTENT`, the returned uris are file references transient to your activity's current lifecycle. Regardless of the intent type, it is recommended you import a copy that you can read later, using [`keepLocalCopy`](./keeping-local-copy.mdx).
 
-  </TabItem>
-  <TabItem value="ios" label="iOS">
+  
+  
     Import mode uses [UIDocumentPickerViewController init(forOpeningContentTypes:asCopy:)](https://developer.apple.com/documentation/uikit/uidocumentpickerviewcontroller/3566733-init) internally.
 
     In import mode, the picker gives you access to a local copy of the documents. The picked documents are temporary files and remain available only for a short time. Officially it's [until the application terminates](https://developer.apple.com/documentation/uikit/uidocumentpickerdelegate/2902364-documentpicker#discussion) but practically, it appears to be much shorter.
 
     If you want to access a file longer, you have to use [`keepLocalCopy`](./keeping-local-copy.mdx), or the [open mode](./open-mode.mdx) instead.
 
-  </TabItem>
-</Tabs>
+  
 
 ### Import Options
 
@@ -228,9 +226,9 @@ import TabItem from '@theme/TabItem'
 
 The result of the `pick` function is an array of picked files (the result is the same for both `open` and `import` modes). The array has a length of 1 if `allowMultiSelection` is `false` (the default), and 1 or more if `allowMultiSelection` is `true`.
 
-import OptionalFieldsNote from './_optionalFieldsNote.mdx'
-
-<OptionalFieldsNote />
+:::note
+Many of the fields are nullable because the file metadata might not be available in some cases. While it's unlikely, it can happen - especially on Android - if a user picks a file from a [Document Provider](https://developer.android.com/guide/topics/providers/create-document-provider) that doesn't make the information available.
+:::
 
 Each picked file is represented by an object with the following properties:
 
@@ -295,16 +293,14 @@ return (
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 
-<Tabs queryString="current-os" className="unique-tabs">
-  <TabItem value="android" label="Android">
+  
     Open mode uses [`Intent.ACTION_OPEN_DOCUMENT`](https://developer.android.com/reference/android/content/Intent#ACTION_OPEN_DOCUMENT) internally.
 
-  </TabItem>
-  <TabItem value="ios" label="iOS">
+  
+  
     Open mode uses [UIDocumentPickerViewController init(forOpeningContentTypes:asCopy:)](https://developer.apple.com/documentation/uikit/uidocumentpickerviewcontroller/3566733-init) internally.
 
-  </TabItem>
-</Tabs>
+  
 
 ### Open Options
 
@@ -322,9 +318,9 @@ import TabItem from '@theme/TabItem'
 
 The shape of result is the same for both `open` and `import` modes.
 
-import OptionalFieldsNote from './_optionalFieldsNote.mdx'
-
-<OptionalFieldsNote />
+:::note
+Many of the fields are nullable because the file metadata might not be available in some cases. While it's unlikely, it can happen - especially on Android - if a user picks a file from a [Document Provider](https://developer.android.com/guide/topics/providers/create-document-provider) that doesn't make the information available.
+:::
 
 Each picked file is represented by an object with the following properties:
 
@@ -420,20 +416,17 @@ On Android, only one file can be saved at a time but on iOS, multiple files can 
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 
-<Tabs queryString="current-os" className="unique-tabs">
-    <TabItem value="android" label="Android">
+    
         Uses [`Intent.ACTION_CREATE_DOCUMENT`](https://developer.android.com/reference/android/content/Intent#ACTION_CREATE_DOCUMENT) internally.
         This is a two-step process: first, the user provides the target (location and name), then the package copies the source to the selected target.
 
-    </TabItem>
-    <TabItem value="ios" label="iOS">
+    
+    
         Uses [UIDocumentPickerViewController init(forExporting:)](https://developer.apple.com/documentation/uikit/uidocumentpickerviewcontroller/3566730-init) internally.
 
         Note that unlike on Android, your app does not posses any permissions to the target file.
 
-    </TabItem>
-
-</Tabs>
+    
 
 ---
 
@@ -464,14 +457,13 @@ return (
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 
-<Tabs queryString="current-os" className="unique-tabs">
-    <TabItem value="android" label="Android">
+    
         This method opens an `InputStream` pointing to the picked `content://` uri (from both Open and Import modes) and stores its bytes into a file - i.e. it can be used to "convert" a `content://` Uri into a local file. This file's location is determined by the `destination` parameter.
 
         It also "converts" [virtual files](./virtual-files.md) (such as Google Docs or sheets) into local files.
 
-    </TabItem>
-    <TabItem value="ios" label="iOS">
+    
+    
         On iOS, `keepLocalCopy` is only supported for the Import mode at the moment.
 
        Calling this method is strongly recommended, though not strictly necessary, as the file is already temporarily available in a location in the app's sandbox when it is picked.
@@ -481,9 +473,7 @@ import TabItem from '@theme/TabItem'
 
         To prevent deletion, call `keepLocalCopy()` and pass `destination: "documentDirectory"`.
         This moves the file from the temporary location it is in when it is picked, into Documents directory, where the file lives until the app is uninstalled.
-    </TabItem>
-
-</Tabs>
+    
 
 ---
 
@@ -668,17 +658,14 @@ return (
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 
-<Tabs queryString="current-os" className="unique-tabs">
-    <TabItem value="android" label="Android">
+    
         Open mode uses [`Intent.ACTION_OPEN_DOCUMENT_TREE`](https://developer.android.com/reference/android/content/Intent#ACTION_OPEN_DOCUMENT_TREE) internally.
 
-    </TabItem>
-    <TabItem value="ios" label="iOS">
+    
+    
         Open mode uses [UIDocumentPickerViewController init(forOpeningContentTypes:asCopy:)](https://developer.apple.com/documentation/uikit/uidocumentpickerviewcontroller/3566733-init) internally.
 
-    </TabItem>
-
-</Tabs>
+    
 
 ### Writing to the directory location
 
@@ -777,11 +764,11 @@ import Image from '@theme/IdealImage'
 
 |                         Open Mode (unrestricted file types)                         |                         Import Mode (unrestricted file types)                         |
 | :---------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------: |
-| <Image img={require('/img/modes/open-unrestricted.jpg')} style={{maxWidth: 400}} /> | <Image img={require('/img/modes/import-unrestricted.jpg')} style={{maxWidth: 400}} /> |
+|  |  |
 
 |                   Open Mode (restricted to picking pdf)                    |                   Import Mode (restricted to picking pdf)                    |
 | :------------------------------------------------------------------------: | :--------------------------------------------------------------------------: |
-| <Image img={require('/img/modes/open-pdf.jpg')} style={{maxWidth: 400}} /> | <Image img={require('/img/modes/import-pdf.jpg')} style={{maxWidth: 400}} /> |
+|  |  |
 
 ### Resources
 
@@ -807,17 +794,14 @@ The call to `viewDocument` returns a promise that resolves with `null` in case o
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 
-<Tabs queryString="current-os" className="unique-tabs">
-    <TabItem value="android" label="Android">
+    
         `viewDocument` uses [`Intent.ACTION_VIEW`](https://developer.android.com/reference/android/content/Intent#ACTION_VIEW) internally.
 
-    </TabItem>
-    <TabItem value="ios" label="iOS">
+    
+    
         `viewDocument` uses the [QuickLook framework](https://developer.apple.com/documentation/quicklook) internally.
 
-    </TabItem>
-
-</Tabs>
+    
 
 ### View a document given a `uri`
 
